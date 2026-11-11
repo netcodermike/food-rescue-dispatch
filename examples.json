@@ -1,0 +1,63 @@
+{
+  "slug": "food-rescue-dispatch",
+  "gateway": [
+    "dispatch",
+    "/dispatch",
+    "JavaScript"
+  ],
+  "worker": [
+    "eligibility",
+    "/eligible",
+    "Python"
+  ],
+  "cases": [
+    [
+      "Route 65 chilled meals",
+      {
+        "portions": 65,
+        "cold": true,
+        "radiusKm": 8,
+        "partners": [
+          {
+            "id": "pantry",
+            "distanceKm": 2,
+            "capacity": 35,
+            "refrigeration": true
+          },
+          {
+            "id": "school",
+            "distanceKm": 1,
+            "capacity": 100,
+            "refrigeration": false
+          },
+          {
+            "id": "shelter",
+            "distanceKm": 4,
+            "capacity": 20,
+            "refrigeration": true
+          },
+          {
+            "id": "county",
+            "distanceKm": 12,
+            "capacity": 90,
+            "refrigeration": true
+          }
+        ]
+      },
+      200,
+      {
+        "assignments": [
+          {
+            "site": "pantry",
+            "portions": 35
+          },
+          {
+            "site": "shelter",
+            "portions": 20
+          }
+        ],
+        "unassigned": 10
+      }
+    ]
+  ]
+}
