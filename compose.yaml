@@ -9,9 +9,15 @@ services:
       OPERATION_PATH: /dispatch
       UPSTREAM_URL: http://eligibility:8081/eligible
     depends_on:
-      - eligibility
+      eligibility:
+        condition: service_healthy
   eligibility:
     build: ./services/eligibility
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8081/health', timeout=1).close()"]
+      interval: 1s
+      timeout: 2s
+      retries: 20
     environment:
       HOST: 0.0.0.0
       PORT: "8081"
